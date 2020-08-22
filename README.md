@@ -7,7 +7,7 @@ TDSProxy is a proxy server for the MS SQL Server TDS Protocol.
 
 
 # Compile
-`
+```
 choco install dotnet4.7.2
 choco install netfx-4.7.2-devpack
 choco install visualstudio2019buildtools
@@ -16,7 +16,7 @@ choco install nuget.commandline
 cd TDSProxy\src
 nuget restore
 "c:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin\amd64\MSBuild.exe" /property:Configuration=Release
-`
+```
 
 # Run
 - compile
