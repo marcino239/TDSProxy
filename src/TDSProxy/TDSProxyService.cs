@@ -77,6 +77,11 @@ namespace TDSProxy
 				log.Debug("Packet dumping is on.");
 
 			// ReSharper disable once StringLiteralTypo
+			TDSProtocol.TDSPacket.ShowSqlBatchText = args.Any(a => string.Equals(a, "ShowSqlBatchText", StringComparison.OrdinalIgnoreCase));
+			if (TDSProtocol.TDSPacket.ShowSqlBatchText)
+				log.Debug("Show SqlBatch text is on.");
+
+			// ReSharper disable once StringLiteralTypo
 			SkipLoginProcessing = args.Any(a => string.Equals(a, "skiplogin", StringComparison.OrdinalIgnoreCase));
 			if (SkipLoginProcessing)
 				log.Debug("Skipping login processing.");

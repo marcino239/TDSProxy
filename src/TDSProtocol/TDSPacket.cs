@@ -23,6 +23,7 @@ namespace TDSProtocol
 		}
 
 		public static bool DumpPackets { get; set; }
+		public static bool ShowSqlBatchText { get; set; }
 
 		public TDSMessageType PacketType { get; set; }
 
@@ -107,7 +108,7 @@ namespace TDSProtocol
 
 				if (DumpPackets)
 					log.DebugFormat("Wrote {0} packet. Data:\r\n{1}", messageType, packet.FormatAsHex());
-
+				
 				payloadOffset += thisPayloadLength;
 			}
 		}
@@ -231,6 +232,12 @@ namespace TDSProtocol
 
 			if (DumpPackets)
 				log.DebugFormat("Received {0} packet. Data:\r\n{1}", type, header.Concat(payload).FormatAsHex());
+
+			if (ShowSqlBatchText && type == TDSMessageType.SqlBatch )
+			{
+				var payloadTxt = System.Text.UnicodeEncoding.Unicode.GetString( payload );
+				log.DebugFormat("SQL: {0}\r\n", payloadTxt );
+			}
 
 			return new TDSPacket
 			{
